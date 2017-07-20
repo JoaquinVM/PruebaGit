@@ -7,16 +7,23 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.utils.DelayedRemovalArray;
+import com.prueba.entities.Box;
 
 /**
  * Created by Joaco99 on 20/07/2017.
  */
 
-public class PlayScreen extends ScreenAdapter {
+public class Level extends ScreenAdapter {
     Stage stage;
     Box box;
     SpriteBatch batch;
     BitmapFont font;
+    private DelayedRemovalArray<Box> boxes;
+
+    public Level() {
+        boxes = new DelayedRemovalArray<Box>();
+    }
 
     @Override
     public void show() {
@@ -31,7 +38,6 @@ public class PlayScreen extends ScreenAdapter {
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
-
         batch.begin();
         stage.draw();
         batch.end();
@@ -42,6 +48,10 @@ public class PlayScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         stage.dispose();
+    }
+
+    public DelayedRemovalArray<Box> getBoxes() {
+        return boxes;
     }
 
     public BitmapFont getFont(){
