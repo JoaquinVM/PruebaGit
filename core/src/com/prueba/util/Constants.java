@@ -5,6 +5,7 @@ package com.prueba.util;
  */
 
 public class Constants {
+    public static final int BOX_MAX_CAPACITY = 100;
     public static float WORLD_WIDTH = 600;
     public static float WORLD_HEIGHT = 400;
     public static int INITIAL_BOX_CAPACITY = 0;

@@ -58,8 +58,8 @@ public class Box extends Actor {
     }
 
     public void onTouch() {
-        capacity += 20;
-        if (capacity > 100) {
+        capacity += Constants.BOX_INCREMENT;
+        if (capacity > Constants.BOX_MAX_CAPACITY) {
             this.remove();
             level.getBoxes().begin();
             level.getBoxes().removeValue(this, false);
