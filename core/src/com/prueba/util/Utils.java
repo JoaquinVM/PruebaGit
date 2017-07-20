@@ -13,11 +13,14 @@ public class Utils {
 
     public static final Random random = new Random();
 
+    private static final GlyphLayout layout = new GlyphLayout();
+    private static final Vector2 textDimensions = new Vector2();
+
     public static Vector2 getTextDimensions(BitmapFont font, String text) {
-        GlyphLayout layout = new GlyphLayout();
         layout.setText(font, text);
         float width = layout.width;
         float height = layout.height;
-        return new Vector2(width, height);
+        textDimensions.set(width, height);
+        return textDimensions;
     }
 }
