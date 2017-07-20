@@ -29,6 +29,7 @@ public class Box extends Actor{
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        batch.setColor(color);
         batch.draw(texture, getX(), getY());
     }
 }
