@@ -3,6 +3,7 @@ package com.prueba;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
@@ -14,10 +15,11 @@ public class Box extends Actor{
     private Color color;
     private Texture texture;
 
-    public Box(float width, float height, Color color){
+    public Box(float width, float height, Color color, float x, float y){
         setSize(width, height);
         this.color = color;
         texture = new Texture(Constants.BOX_TEXTURE);
+        setPosition(x, y);
     }
 
     @Override
@@ -27,6 +29,6 @@ public class Box extends Actor{
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-
+        batch.draw(texture, getX(), getY());
     }
 }
