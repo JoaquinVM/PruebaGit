@@ -14,7 +14,4 @@ public class MyGdxGame extends Game {
 		setScreen(new PlayScreen());
 	}
 
-	@Override
-	public void render () {
-	}
 }
