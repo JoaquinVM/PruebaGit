@@ -6,16 +6,22 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.prueba.entities.Box;
 
 /**
  * Created by Joaco99 on 20/07/2017.
  */
 
-public class PlayScreen extends ScreenAdapter {
+public class Level extends ScreenAdapter {
     Stage stage;
     Box box;
     SpriteBatch batch;
+    private DelayedRemovalArray<Box> boxes;
+
+    public Level() {
+        boxes = new DelayedRemovalArray<Box>();
+    }
 
     @Override
     public void show() {
@@ -37,5 +43,9 @@ public class PlayScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         stage.dispose();
+    }
+
+    public DelayedRemovalArray<Box> getBoxes() {
+        return boxes;
     }
 }
