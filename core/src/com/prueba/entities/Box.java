@@ -44,5 +44,11 @@ public class Box extends Actor {
         batch.draw(texture, getX(), getY());
     }
 
+    public Rectangle getBounds() {
+        return bounds;
+    }
 
+    public void onTouch() {
+        capacity += 20;
+    }
 }
