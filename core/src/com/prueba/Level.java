@@ -3,7 +3,6 @@ package com.prueba;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -54,24 +53,7 @@ public class Level extends ScreenAdapter {
 
         float elapsedTime = MathUtils.nanoToSec * (TimeUtils.nanoTime() - startTime);
         if (elapsedTime >= spawnRate) {
-            // New box at a random position
-            boxes.begin();
-            float randomX = 0;
-            float randomY = 0;
-            do{
-                randomX = Utils.random.nextFloat() * Constants.WORLD_WIDTH;
-            }while(randomX + Constants.BOX_SIZE <= Constants.WORLD_WIDTH);
-            do{
-                randomY = Utils.random.nextFloat() * Constants.WORLD_HEIGHT;
-            }while(randomY + Constants.BOX_SIZE <= Constants.WORLD_HEIGHT);
-
-            Box box = new Box(this, Constants.BOX_SIZE, Constants.BOX_SIZE, randomX, randomY);
-            boxes.add(box);
-            stage.addActor(box);
-            boxes.end();
-
-            startTime = TimeUtils.nanoTime();
-            spawnRate += Constants.BOX_SPAWN_RATE_INCREMENT;
+            spawnBox();
         }
         stage.act();
         batch.begin();
@@ -84,6 +66,20 @@ public class Level extends ScreenAdapter {
         stage.dispose();
         batch.dispose();
         font.dispose();
+    }
+
+    private void spawnBox() {
+        boxes.begin();
+        float randomX = Utils.random.nextFloat() * (Constants.WORLD_WIDTH - Constants.BOX_SIZE);
+        float randomY = Utils.random.nextFloat() * (Constants.WORLD_HEIGHT - Constants.BOX_SIZE);
+
+        Box box = new Box(this, Constants.BOX_SIZE, Constants.BOX_SIZE, randomX, randomY);
+        boxes.add(box);
+        stage.addActor(box);
+        boxes.end();
+
+        startTime = TimeUtils.nanoTime();
+        spawnRate = Math.max(Constants.MIN_SPAWN_RATE, spawnRate * Constants.BOX_SPAWN_RATE_DECREMENT);
     }
 
     public DelayedRemovalArray<Box> getBoxes() {
