@@ -1,5 +1,6 @@
 package com.prueba;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.prueba.entities.Box;
 import com.prueba.util.MyInput;
+import com.prueba.util.Utils;
 
 /**
  * Created by Joaco99 on 20/07/2017.
@@ -41,6 +43,7 @@ public class Level extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(Utils.random.nextFloat(), Utils.random.nextFloat(), Utils.random.nextFloat(), 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         batch.begin();
