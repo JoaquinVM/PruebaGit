@@ -1,7 +1,7 @@
 package com.prueba.util;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.math.Vector2;
 import com.prueba.Level;
 import com.prueba.entities.Box;
 
@@ -18,10 +18,13 @@ public class MyInput extends InputAdapter {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        screenY = Gdx.graphics.getHeight() - screenY;
+        Vector2 viewportPosition = level.getViewport().unproject(new Vector2(screenX, screenY));
+        System.out.println(viewportPosition.x + ", " + viewportPosition.y);
+
         for (Box box : level.getBoxes()) {
-            if (box.getBounds().contains(screenX, screenY)) {
+            if (box.getBounds().contains(viewportPosition.x, viewportPosition.y)) {
                 box.onTouch();
+                System.out.println("DERP");
             }
         }
         return true;

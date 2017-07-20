@@ -13,15 +13,15 @@ import com.prueba.util.Utils;
  * Created by Joaco99 on 20/07/2017.
  */
 
-public class Box extends Actor{
+public class Box extends Actor {
     private int capacity = Constants.INITIAL_BOX_CAPACITY;
     private Color color;
     private Texture texture;
-    private Level screen;
+    private Level level;
     private Rectangle bounds;
 
-    public Box(Level screen, float width, float height, Color color, float x, float y){
-        this.screen = screen;
+    public Box(Level level, float width, float height, Color color, float x, float y) {
+        this.level = level;
         setSize(width, height);
         this.color = color;
         texture = new Texture(Constants.BOX_TEXTURE);
@@ -43,10 +43,14 @@ public class Box extends Actor{
     public void draw(Batch batch, float parentAlpha) {
         batch.setColor(color);
         batch.draw(texture, getX(), getY(), getWidth(), getHeight());
-        screen.getFont().setColor(color);
-        screen.getFont().getData().setScale(1.8f);
-        screen.getFont().draw(batch, capacity + "", getX() + (getWidth() / 2)
-                , getY() + getHeight()+ Constants.BOX_AND_FONT_DISTANCE);
+        level.getFont().setColor(color);
+        level.getFont().getData().setScale(1.8f);
+        level.getFont().draw(
+                batch,
+                capacity + "",
+                getX() + (getWidth() / 2),
+                getY() + getHeight() + Constants.BOX_AND_FONT_DISTANCE
+        );
     }
 
     public Rectangle getBounds() {
@@ -55,5 +59,11 @@ public class Box extends Actor{
 
     public void onTouch() {
         capacity += 20;
+        if (capacity > 100) {
+            this.remove();
+            level.getBoxes().begin();
+            level.getBoxes().removeValue(this, false);
+            level.getBoxes().end();
+        }
     }
 }
