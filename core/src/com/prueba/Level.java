@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.prueba.entities.Box;
 import com.prueba.util.MyInput;
@@ -34,6 +35,8 @@ public class Level extends ScreenAdapter {
             stage.addActor(box);
         }
         Gdx.input.setInputProcessor(new MyInput(this));
+
+        long startTime = TimeUtils.nanoTime();
     }
 
     @Override

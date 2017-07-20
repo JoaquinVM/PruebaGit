@@ -19,12 +19,10 @@ public class MyInput extends InputAdapter {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         Vector2 viewportPosition = level.getViewport().unproject(new Vector2(screenX, screenY));
-        System.out.println(viewportPosition.x + ", " + viewportPosition.y);
 
         for (Box box : level.getBoxes()) {
             if (box.getBounds().contains(viewportPosition.x, viewportPosition.y)) {
                 box.onTouch();
-                System.out.println("DERP");
             }
         }
         return true;

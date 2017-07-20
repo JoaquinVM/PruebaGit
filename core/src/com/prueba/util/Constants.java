@@ -5,9 +5,10 @@ package com.prueba.util;
  */
 
 public class Constants {
-    public static final int BOX_MAX_CAPACITY = 100;
     public static float WORLD_WIDTH = 600;
     public static float WORLD_HEIGHT = 400;
+    public static float BOX_SPAWN_RATIO = 1;
+    public static final int BOX_MAX_CAPACITY = 100;
     public static int INITIAL_BOX_CAPACITY = 0;
     public static int BOX_INCREMENT = 20;
     public static float BOX_AND_FONT_DISTANCE = 20;
