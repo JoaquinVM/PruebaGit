@@ -55,4 +55,12 @@ public class Box extends Actor {
         screen.getFont().draw(batch, capacity + "", getX() + (getWidth() / 2)
                 , getY() + getHeight()+ Constants.BOX_AND_FONT_DISTANCE);
     }
+
+    public Rectangle getBounds() {
+        return bounds;
+    }
+
+    public void onTouch() {
+        capacity += 20;
+    }
 }

@@ -1,7 +1,7 @@
 package com.prueba.util;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.math.collision.BoundingBox;
 import com.prueba.Level;
 import com.prueba.entities.Box;
 
@@ -18,8 +18,11 @@ public class MyInput extends InputAdapter {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        screenY = Gdx.graphics.getHeight() - screenY;
         for (Box box : level.getBoxes()) {
-
+            if (box.getBounds().contains(screenX, screenY)) {
+                box.onTouch();
+            }
         }
         return true;
     }
