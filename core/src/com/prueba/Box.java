@@ -1,6 +1,7 @@
 package com.prueba;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
@@ -11,10 +12,12 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class Box extends Actor{
     private float capacity = Constants.INITIAL_BOX_CAPACITY;
     private Color color;
+    private Texture texture;
 
     public Box(float width, float height, Color color){
         setSize(width, height);
         this.color = color;
+        texture = new Texture(Constants.BOX_TEXTURE);
     }
 
     @Override
