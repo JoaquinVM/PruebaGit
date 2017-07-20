@@ -10,7 +10,7 @@ public class Constants {
     public static int INITIAL_BOX_CAPACITY = 0;
     public static int BOX_INCREMENT = 20;
     public static float BOX_AND_FONT_DISTANCE = 20;
-
-    public static String BOX_TEXTURE = "box.png";
-
+    
+    public static final String BOX_TEXTURE = "box.png";
+    
 }
