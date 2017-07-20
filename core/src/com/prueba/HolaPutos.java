@@ -7,8 +7,7 @@ package com.prueba;
 public class HolaPutos {
 
     public void putear() {
-        System.out.println("1234567890");
-        System.out.println("1234567890");
+        System.out.println("1234567asdfasdfsa890");
         System.out.println("1234567890");
     }
 }
