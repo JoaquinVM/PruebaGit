@@ -15,26 +15,23 @@ import com.badlogic.gdx.graphics.Color;
 
 public class PlayScreen extends ScreenAdapter {
     Stage stage;
-    Viewport viewport;
     Box box;
     SpriteBatch batch;
 
     @Override
     public void show() {
         stage = new Stage();
-        viewport = new ExtendViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
         batch = new SpriteBatch();
         box = new Box(100, 100, Color.GREEN, 10, 10);
         stage.addActor(box);
-
     }
 
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        viewport.apply();
-        batch.begin();
         stage.act();
+        batch.begin();
+        stage.draw();
         batch.end();
     }
 
