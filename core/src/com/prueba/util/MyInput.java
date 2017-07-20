@@ -1,4 +1,4 @@
-package com.prueba;
+package com.prueba.util;
 
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input;
