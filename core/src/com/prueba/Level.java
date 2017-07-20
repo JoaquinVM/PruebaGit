@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -24,6 +25,7 @@ public class Level extends ScreenAdapter {
     SpriteBatch batch;
     BitmapFont font;
     private DelayedRemovalArray<Box> boxes;
+    private long startTime;
 
     @Override
     public void show() {
@@ -38,13 +40,14 @@ public class Level extends ScreenAdapter {
         }
         Gdx.input.setInputProcessor(new MyInput(this));
 
-        long startTime = TimeUtils.nanoTime();
+        startTime = TimeUtils.nanoTime();
     }
 
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(Utils.random.nextFloat(), Utils.random.nextFloat(), Utils.random.nextFloat(), 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        float elapsedTime = MathUtils.nanoToSec * (TimeUtils.nanoTime() - startTime);
         stage.act();
         batch.begin();
         stage.draw();
