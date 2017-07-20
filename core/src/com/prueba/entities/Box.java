@@ -1,4 +1,4 @@
-package com.prueba;
+package com.prueba.entities;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
