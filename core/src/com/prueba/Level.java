@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.prueba.entities.Box;
+import com.prueba.util.Constants;
 import com.prueba.util.MyInput;
 import com.prueba.util.Utils;
 
@@ -26,6 +27,7 @@ public class Level extends ScreenAdapter {
     BitmapFont font;
     private DelayedRemovalArray<Box> boxes;
     private long startTime;
+    private float spawnRate;
 
     @Override
     public void show() {
@@ -41,6 +43,7 @@ public class Level extends ScreenAdapter {
         Gdx.input.setInputProcessor(new MyInput(this));
 
         startTime = TimeUtils.nanoTime();
+        spawnRate = Constants.INITIAL_BOX_SPAWN_RATE;
     }
 
     @Override
@@ -48,6 +51,11 @@ public class Level extends ScreenAdapter {
         Gdx.gl.glClearColor(Utils.random.nextFloat(), Utils.random.nextFloat(), Utils.random.nextFloat(), 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         float elapsedTime = MathUtils.nanoToSec * (TimeUtils.nanoTime() - startTime);
+        if (elapsedTime >= spawnRate) {
+            // New box at a random position
+            startTime = TimeUtils.nanoTime();
+            spawnRate += Constants.BOX_SPAWN_RATE_INCREMENT;
+        }
         stage.act();
         batch.begin();
         stage.draw();

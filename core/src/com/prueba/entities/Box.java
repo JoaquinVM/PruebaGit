@@ -3,7 +3,6 @@ package com.prueba.entities;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.prueba.Level;
@@ -57,7 +56,8 @@ public class Box extends Actor {
     public Rectangle getBounds() {
         return bounds;
     }
-//
+
+    //
     public void onTouch() {
         capacity += Constants.BOX_INCREMENT;
         if (capacity > Constants.BOX_MAX_CAPACITY) {
