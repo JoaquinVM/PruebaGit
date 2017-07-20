@@ -36,7 +36,7 @@ public class Level extends ScreenAdapter {
         font = new BitmapFont();
         boxes = new DelayedRemovalArray<Box>();
         for (int i = 0; i < 3; i++) {
-            Box box = new Box(this, 100, 100, Color.GREEN, 10 + 110 * i, 10);
+            Box box = new Box(this, 100, 100, 10 + 110 * i, 10);
             boxes.add(box);
             stage.addActor(box);
         }
@@ -50,9 +50,26 @@ public class Level extends ScreenAdapter {
     public void render(float delta) {
         Gdx.gl.glClearColor(Utils.random.nextFloat(), Utils.random.nextFloat(), Utils.random.nextFloat(), 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.setProjectionMatrix(getViewport().getCamera().combined);
+
         float elapsedTime = MathUtils.nanoToSec * (TimeUtils.nanoTime() - startTime);
         if (elapsedTime >= spawnRate) {
             // New box at a random position
+            boxes.begin();
+            float randomX = 0;
+            float randomY = 0;
+            do{
+                randomX = Utils.random.nextFloat() * Constants.WORLD_WIDTH;
+            }while(randomX + Constants.BOX_SIZE <= Constants.WORLD_WIDTH);
+            do{
+                randomY = Utils.random.nextFloat() * Constants.WORLD_HEIGHT;
+            }while(randomY + Constants.BOX_SIZE <= Constants.WORLD_HEIGHT);
+
+            Box box = new Box(this, Constants.BOX_SIZE, Constants.BOX_SIZE, randomX, randomY);
+            boxes.add(box);
+            stage.addActor(box);
+            boxes.end();
+
             startTime = TimeUtils.nanoTime();
             spawnRate += Constants.BOX_SPAWN_RATE_INCREMENT;
         }

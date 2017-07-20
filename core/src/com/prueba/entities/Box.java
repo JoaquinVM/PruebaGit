@@ -20,10 +20,10 @@ public class Box extends Actor {
     private Level level;
     private Rectangle bounds;
 
-    public Box(Level level, float width, float height, Color color, float x, float y) {
+    public Box(Level level, float width, float height, float x, float y) {
         this.level = level;
         setSize(width, height);
-        this.color = color;
+        color = new Color();
         texture = new Texture(Constants.BOX_TEXTURE);
         setPosition(x, y);
         bounds = new Rectangle(x, y, width, height);
@@ -31,7 +31,7 @@ public class Box extends Actor {
 
     @Override
     public void act(float delta) {
-        color = new Color(
+        color.set(
                 Utils.random.nextFloat(),
                 Utils.random.nextFloat(),
                 Utils.random.nextFloat(),
@@ -44,12 +44,12 @@ public class Box extends Actor {
         batch.setColor(color);
         batch.draw(texture, getX(), getY(), getWidth(), getHeight());
         level.getFont().setColor(Color.BLACK);
-        level.getFont().getData().setScale(1.8f);
+        level.getFont().getData().setScale(1.3f);
         level.getFont().draw(
                 batch,
                 capacity + "",
-                getX() + (getWidth() / 2) - Utils.getTextDimensions(level.getFont(), capacity + "").x,
-                getY() + (getHeight() / 2) + Utils.getTextDimensions(level.getFont(), capacity + "").y
+                getX() + (getWidth() / 2) - (Utils.getTextDimensions(level.getFont(), capacity + "").x / 2),
+                getY() + (getHeight() / 2) + (Utils.getTextDimensions(level.getFont(), capacity + "").y / 2)
         );
     }
 
