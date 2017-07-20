@@ -44,13 +44,13 @@ public class Box extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         batch.setColor(color);
         batch.draw(texture, getX(), getY(), getWidth(), getHeight());
-        level.getFont().setColor(color);
+        level.getFont().setColor(Color.BLACK);
         level.getFont().getData().setScale(1.8f);
         level.getFont().draw(
                 batch,
                 capacity + "",
                 getX() + (getWidth() / 2) - Utils.getTextDimensions(level.getFont(), capacity + "").x,
-                getY() + (getHeight() / 2) - Utils.getTextDimensions(level.getFont(), capacity + "").y
+                getY() + (getHeight() / 2) + Utils.getTextDimensions(level.getFont(), capacity + "").y
         );
     }
 
