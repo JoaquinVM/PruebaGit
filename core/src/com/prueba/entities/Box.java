@@ -57,7 +57,7 @@ public class Box extends Actor {
     public Rectangle getBounds() {
         return bounds;
     }
-
+//
     public void onTouch() {
         capacity += Constants.BOX_INCREMENT;
         if (capacity > Constants.BOX_MAX_CAPACITY) {
