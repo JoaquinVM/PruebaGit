@@ -3,6 +3,7 @@ package com.prueba.entities;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.prueba.Level;
@@ -48,15 +49,15 @@ public class Box extends Actor {
         level.getFont().draw(
                 batch,
                 capacity + "",
-                getX() + (getWidth() / 2),
-                getY() + getHeight() + Constants.BOX_AND_FONT_DISTANCE
+                getX() + (getWidth() / 2) - Utils.getTextDimensions(level.getFont(), capacity + "").x,
+                getY() + (getHeight() / 2) - Utils.getTextDimensions(level.getFont(), capacity + "").y
         );
     }
 
     public Rectangle getBounds() {
         return bounds;
     }
-
+//
     public void onTouch() {
         capacity += Constants.BOX_INCREMENT;
         if (capacity > Constants.BOX_MAX_CAPACITY) {
